@@ -85,13 +85,17 @@ public class ArticleDB {
 	public void insertArticle(String title, String body, String nickname) {
 
 		String sql = String.format(
-				"INSERT INTO article SET `title` = '%s', body = '%s', nickname = '%s', regDate = NOW()", title, body,
-				nickname);
+				"INSERT INTO article SET `title` = '%s', body = '%s', nickname = '%s', regDate = NOW()", title, body, nickname);
 		updateQuery(sql);
 	}
 	
 	public void updateArticle(int idx, String title, String body) {
 		String sql = String.format("UPDATE article SET title = '%s', `body` = '%s' WHERE idx = %d", title, body, idx);
+		updateQuery(sql);
+	}
+
+	public void deleteArticle(int idx) {
+		String sql = String.format("DELETE FROM article WHERE idx = %d", idx);
 		updateQuery(sql);
 	}
 	

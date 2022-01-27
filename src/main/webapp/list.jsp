@@ -10,7 +10,7 @@
 <body>
 <h1>게시물 목록</h1>
 <hr>
-<a href="http://localhost:9000/article/showAddForm">글쓰기</a>
+<a href="http://localhost:8080/article/showAddForm">글쓰기</a>
 <hr>
 	<c:forEach items="${articleList}" var="article">
 		<div>

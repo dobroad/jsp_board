@@ -45,6 +45,18 @@ public class ArticleController extends HttpServlet {
 		String func = (String)request.getAttribute("func");
 		if(func.equals("add")) {
 			doAdd(request, response);
+			
+		} else if(func.equals("update")){
+			int idx = Integer.parseInt(request.getParameter("idx"));
+			String title = request.getParameter("title");
+			String body = request.getParameter("body");
+			db.updateArticle(idx, title, body);
+			response.sendRedirect("/article/detail?idx=" + idx);	
+			
+		} else if(func.equals("delete")) {
+			int idx = Integer.parseInt(request.getParameter("idx"));
+			db.deleteArticle(idx);
+			response.sendRedirect("/article/list");
 		}
 	}
 	
@@ -66,13 +78,6 @@ public class ArticleController extends HttpServlet {
 			Article article = db.getArticleByIdx(idx);
 			request.setAttribute("article", article);
 			forward(request, response, "/detail.jsp");	
-			
-		} else if(func.equals("update")){
-			int idx = Integer.parseInt(request.getParameter("idx"));
-			String title = request.getParameter("title");
-			String body = request.getParameter("body");
-			db.updateArticle(idx, title, body);
-			response.sendRedirect("/article/detail?idx=" + idx);
 			
 		} else if(func.equals("showUpdateForm")) {
 			int idx = Integer.parseInt(request.getParameter("idx"));

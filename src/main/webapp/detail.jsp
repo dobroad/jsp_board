@@ -27,8 +27,14 @@
 	</div>
 <hr>
 	<div>
-		<a href="/article/showUpdateForm?idx=${article.idx}">수정</a>
-		<a href="#">삭제</a>
+		<form action="/article/showUpdateForm?idx=${article.idx}">
+			<input type="hidden" name="idx" value="${article.idx}">
+			<input type="submit" value="수정">
+		</form>
+		<form action="/article/delete" method="POST">
+			<input type="hidden" name="idx" value="${article.idx}">
+			<input type="submit" value="삭제">
+		</form>
 	</div>
 <hr>
 </body>
