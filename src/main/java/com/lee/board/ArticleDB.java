@@ -43,7 +43,6 @@ public class ArticleDB {
 				articleList.add(addr);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return articleList;

@@ -33,6 +33,7 @@ public class ArticleController extends HttpServlet {
 		String method = req.getMethod(); // POST, GET
 		
 		req.setAttribute("func", func);
+		
 		if(method.equals("POST")) {
 			postProcess(req, resp);
 			
