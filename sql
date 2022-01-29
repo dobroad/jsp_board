@@ -1,14 +1,74 @@
-USE `add`;
+# b1 데이터 베이스 생성
+CREATE DATABASE b1;
 
+# b1 사용
+USE b1;
+
+# 게시물 테이블 생성
 CREATE TABLE article(
-    idx INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-    PRIMARY KEY(idx),   
-    title CHAR(100) NOT NULL,
-    `body` TEXT NOT NULL,
-    nickname CHAR(100) NOT NULL,
+    idx INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(50) NOT NULL,
+    `body` TEXT NOT NULL, 
+    nickname VARCHAR(30) NOT NULL,
     regDate DATETIME NOT NULL
 );
 
-DESC article;
+# 게시물 등록
+# 테스트 데이터 3개 등록
+INSERT INTO article
+SET title = '제목1',
+`body` = '내용1',
+nickname = '홍길동',
+regDate = now();
 
-SELECT * FROM article;
+INSERT INTO article
+SET title = '제목2',
+`body` = '내용2',
+nickname = '홍길순',
+regDate = NOW();
+
+INSERT INTO article
+SET title = '제목3',
+`body` = '내용3',
+nickname = '이순신',
+regDate = NOW();
+
+# 전체 게시물 조회
+select *
+from article;
+
+# 특정 게시물 조회
+select *
+from article
+where idx = 3;
+
+# 특정 게시물 수정
+update article 
+set title = 'aaa',
+`body` = 'bbb'
+where idx = 3;
+
+# 특정 게시물 삭제
+delete from article
+where idx = 1;
+
+
+# 회원 테이블 생성
+CREATE TABLE `member`(
+    idx INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    loginId VARCHAR(50) NOT NULL,
+    loginPw varchar(50) NOT NULL, 
+    nickname VARCHAR(30) NOT NULL,
+    regDate DATETIME NOT NULL
+);
+
+# 회원 추가
+insert into `member`
+set loginId = 'hong123',
+loginPw = 'h1234',
+nickname = '홍길동',
+regDate = NOW();
+
+# 회원 조회
+select *
+from `member`;

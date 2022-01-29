@@ -26,8 +26,7 @@ public class MemberDB {
 
 	public void insertMember(String loginId, String loginPw, String nickname) {
 		String sql = String.format(
-				"INSERT INTO `member` SET loginId = 'hong123', loginPw = 'h1234', nickname = '홍길동', regDate = NOW()", loginId, loginPw,
-				nickname);
+				"INSERT INTO `member` SET loginId = '%s', loginPw = '%s', nickname = '%s', regDate = NOW()", loginId, loginPw, nickname);
 		updateQuery(sql);
 	}		
 

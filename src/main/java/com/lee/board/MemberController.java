@@ -9,8 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/Member/*")
+@WebServlet("*.do")
 public class MemberController extends HttpServlet {
+	
 	MemberDB db = new MemberDB();
 
 	@Override
@@ -46,7 +47,7 @@ public class MemberController extends HttpServlet {
 
 		String func = (String) request.getAttribute("func");
 
-		if (func.equals("add")) {
+		if (func.equals("add.do")) {
 			//
 			String loginId = request.getParameter("loginId");
 			String loginPw = request.getParameter("loginPw");
