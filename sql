@@ -73,6 +73,7 @@ regDate = NOW();
 SELECT *
 FROM `member`;
 
+
 #로그인 정보로 회원 조회
 SELECT idx
 FROM `member`
