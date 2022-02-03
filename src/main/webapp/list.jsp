@@ -10,7 +10,15 @@
 <body>
 <h1>게시물 목록</h1>
 <hr>
-<a href="http://localhost:8080/article/showAddForm">글쓰기</a>
+<c:choose>
+	<c:when test = "${loginedUserName == null }">
+		<a href="/member/showLoginForm.do">로그인</a>
+	</c:when>
+	<c:otherwise>
+		${loginedUserName}님 안녕하세요!
+		<a href="/member/logout.do">로그아웃</a>
+	</c:otherwise>
+</c:choose>
 <hr>
 	<c:forEach items="${articleList}" var="article">
 		<div>
@@ -21,5 +29,8 @@
 		</div>
 		<hr>
 	</c:forEach>
+<hr>
+<a href="http://localhost:8080/article/showAddForm">글쓰기</a>
+<hr>
 </body>
 </html>
