@@ -19,7 +19,7 @@ INSERT INTO article
 SET title = '제목1',
 `body` = '내용1',
 nickname = '홍길동',
-regDate = now();
+regDate = NOW();
 
 INSERT INTO article
 SET title = '제목2',
@@ -34,41 +34,46 @@ nickname = '이순신',
 regDate = NOW();
 
 # 전체 게시물 조회
-select *
-from article;
+SELECT *
+FROM article;
 
 # 특정 게시물 조회
-select *
-from article
-where idx = 3;
+SELECT *
+FROM article
+WHERE idx = 3;
 
 # 특정 게시물 수정
-update article 
-set title = 'aaa',
+UPDATE article 
+SET title = 'aaa',
 `body` = 'bbb'
-where idx = 3;
+WHERE idx = 3;
 
 # 특정 게시물 삭제
-delete from article
-where idx = 1;
+DELETE FROM article
+WHERE idx = 1;
 
 
 # 회원 테이블 생성
 CREATE TABLE `member`(
     idx INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     loginId VARCHAR(50) NOT NULL,
-    loginPw varchar(50) NOT NULL, 
+    loginPw VARCHAR(50) NOT NULL, 
     nickname VARCHAR(30) NOT NULL,
     regDate DATETIME NOT NULL
 );
 
 # 회원 추가
-insert into `member`
-set loginId = 'hong123',
+INSERT INTO `member`
+SET loginId = 'hong123',
 loginPw = 'h1234',
 nickname = '홍길동',
 regDate = NOW();
 
 # 회원 조회
-select *
-from `member`;
+SELECT *
+FROM `member`;
+
+#로그인 정보로 회원 조회
+SELECT idx
+FROM `member`
+WHERE loginId = 'hong123' AND loginPw = 'h1234';
