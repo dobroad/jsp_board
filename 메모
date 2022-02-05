@@ -1,0 +1,26 @@
+- ${ loginedUserName } ==> *.getAttribute("loginedUserName"); 
+	- *: request, session, application 
+
+- JSP에서 어트리뷰트를 꺼내오는 규칙
+	1) 우선순위
+		1순위: request
+		2순위: session
+		3순위: application
+		=> 동일한 이름의 어트리뷰트가 있어도 우선순위대로 가져옴
+	
+	2) request랑 session 둘 다 있는경우, session에 있는걸 사용하고 싶을 때
+		=> 범위(scope)를 정해주면 됨 
+			예) ${sessionScope.loginedUsername}
+		
+- request/session/application
+	1) request
+		- 하나의 업무만 처리
+		- 유지시간: 하나의 요청이 처리될 때까지
+		- 웹 특성상 불특정 다수가 수시로 요청을 하기때문에 request로 처리하는게 유리
+	2) session
+		- 한 고객의 업무를 처리
+		- 유지시간: 한 고객이 접속해 있는동안
+	3) application
+		- 전체 고객의 업무를 처리
+		- 유지시간: 어플리케이션이 실행되는 동안		
+	

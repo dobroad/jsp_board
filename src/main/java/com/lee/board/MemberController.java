@@ -4,11 +4,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("*.do")
 public class MemberController extends HttpServlet {
@@ -68,16 +70,21 @@ public class MemberController extends HttpServlet {
 				Member member = db.getMemberByIdx(idx);
 				ArrayList<Article> articles = adb.getAllArticles();
 
-				// 게시물 목록으로 간다 => 회원정보 불러와야되니까 포워딩
-				request.setAttribute("loginedUserName", member.getNickname());
-
-				request.setAttribute("articleList", articles);
+				// request는 데이터 유지가 힘듦
+				//request.setAttribute("loginedUserName", member.getNickname());
+				//request.setAttribute("articleList", articles);
+				
+				// session 저장소에 저장하도록 한다.
+				HttpSession session = request.getSession();
+				session.setAttribute("loginedUserName", member.getNickname());
+				session.setAttribute("articleList", articles);
 
 				forward(request, response, "/list.jsp");
 
 			} else { // 로그인 실패
 				System.out.println("lose");
 			}
+			
 		}
 	}
 
@@ -91,7 +98,22 @@ public class MemberController extends HttpServlet {
 			
 		} else if(func.equals("logout.do")) {
 			// 로그아웃 처리
+			// session 내용을 지운다.
+			HttpSession session = request.getSession();
+			session.removeAttribute("loginedUserName");
+			
 			response.sendRedirect("/article/list");
+			
+		} else if(func.equals("test.do")) { // 스코프 사용 테스트 용도
+			request.setAttribute("test", "req");
+			
+			HttpSession session = request.getSession();
+			session.setAttribute("test", "sess");
+			
+			ServletContext application = request.getServletContext();
+			application.setAttribute("test", "app");
+			
+			forward(request, response, "/scopeTest.jsp");
 		}
 
 	}
